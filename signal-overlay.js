@@ -52,9 +52,10 @@
 
   function dm(conf, color) {
     var f = conf === null ? 0 : Math.round(conf / 10);
+    var activeColor = (conf !== null && conf >= 90) ? color : "#9ca3af";
     var h = '<span style="display:inline-flex;gap:2px;align-items:center;">';
     for (var i = 0; i < 10; i++) {
-      h += '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:' + (i < f ? color : "#e5e7eb") + ';"></span>';
+      h += '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:' + (i < f ? activeColor : "#e5e7eb") + ';"></span>';
     }
     return h + "</span>";
   }
