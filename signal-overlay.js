@@ -295,7 +295,7 @@
       }
 
       rows += '<tr style="background:' + rowBg + ';border-bottom:1px solid #f1f5f9;">'
-        + '<td style="padding:6px 16px;min-width:180px;">'
+        + '<td style="padding:0px 16px;min-width:180px;">'
         + '<div style="display:flex;align-items:center;gap:8px;">'
         + '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:' + col.border + ';flex-shrink:0;"></span>'
         + '<span style="font-size:13px;font-weight:500;color:#111827;">' + esc(v.name) + '</span>'
@@ -303,10 +303,10 @@
         + (isBest ? '<span style="font-size:10px;background:' + bc.border + ';color:#fff;padding:1px 6px;border-radius:4px;font-weight:600;">\u2605 Best</span>' : "")
         + '</div>'
         + '</td>'
-        + '<td style="padding:6px 16px;text-align:right;font-family:DM Mono,monospace;font-size:13px;color:#374151;white-space:nowrap;">' + (v.conv !== null ? v.conv.toLocaleString() : "\u2014") + '</td>'
-        + '<td style="padding:6px 16px;text-align:right;font-family:DM Mono,monospace;font-size:13px;color:#374151;white-space:nowrap;">' + (v.cr || "\u2014") + '</td>'
-        + '<td style="padding:6px 16px;text-align:right;white-space:nowrap;">' + lb(v.imp, vi % 4) + '</td>'
-        + '<td style="padding:6px 16px;text-align:right;white-space:nowrap;">'
+        + '<td style="padding:0px 16px;text-align:right;font-family:DM Mono,monospace;font-size:13px;color:#374151;white-space:nowrap;">' + (v.conv !== null ? v.conv.toLocaleString() : "\u2014") + '</td>'
+        + '<td style="padding:0px 16px;text-align:right;font-family:DM Mono,monospace;font-size:13px;color:#374151;white-space:nowrap;">' + (v.cr || "\u2014") + '</td>'
+        + '<td style="padding:0px 16px;text-align:right;white-space:nowrap;">' + lb(v.imp, vi % 4) + '</td>'
+        + '<td style="padding:0px 16px;text-align:right;white-space:nowrap;">'
         + '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;">'
         + dots
         + '<span style="font-family:DM Mono,monospace;font-size:11px;color:#9ca3af;">' + (v.conf !== null ? v.conf.toFixed(1) + "%" : "\u2014") + '</span>'
