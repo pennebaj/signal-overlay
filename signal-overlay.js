@@ -329,7 +329,7 @@
       return '<th style="padding:8px 16px;text-align:' + (i === 0 ? "left" : "right") + ';font-size:10px;font-weight:700;color:' + (isRev ? "#059669" : "#64748b") + ';text-transform:uppercase;letter-spacing:0.06em;background:' + bg + ';white-space:nowrap;">' + esc(h) + '</th>';
     }).join("");
 
-    var mw = (typeof cardIndex === 'number' && cardIndex < 3) ? 'max-width:60%;' : '';
+    var mw = (typeof cardIndex === 'number' && cardIndex < 3) ? 'max-width:65%;' : '';
     return '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.06);flex-shrink:0;' + mw + '">'
       + '<div style="padding:12px 20px;background:#f8fafc;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:10px;">'
       + '<span style="font-size:18px;">' + icon + '</span>'
