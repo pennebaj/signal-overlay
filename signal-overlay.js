@@ -401,10 +401,7 @@
       + '<button id="' + ID + '-close" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:16px;border-radius:6px;cursor:pointer;">\u00d7</button>'
       + '</div>'
       + '</div>'
-      + '<div style="padding:10px 28px;background:#fff;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:20px;flex-wrap:wrap;flex-shrink:0;">'
-      + legend
-      + '<span id="' + ID + '-ts" style="margin-left:auto;font-size:11px;color:#94a3b8;font-family:Oxygen,sans-serif;">Live data</span>'
-      + '</div>'
+
       + '<div id="' + ID + '-body" style="overflow-y:auto;padding:20px 28px;flex:1;display:flex;flex-direction:column;gap:12px;">'
       + (cards || '<p style="color:#94a3b8;font-size:14px;text-align:center;padding:40px;">No goal data found on this page.</p>')
       + '</div>'
