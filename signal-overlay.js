@@ -63,7 +63,7 @@
   function metricColor(imp) {
     if (imp === null) return "#9ca3af";
     if (imp >= 3)    return "#00c047";
-    if (imp > -3)    return "#111827";  // -2.99% to +2.99% — neutral black
+    if (imp > -3)    return "#374151";  // -2.99% to +2.99% — neutral
     if (imp >= -10)  return "#f87171";
     return "#dc2626";
   }
