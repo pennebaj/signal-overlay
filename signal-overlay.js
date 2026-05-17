@@ -1,7 +1,7 @@
 (function () {
   "use strict";
   var ID = "__signal_ov__";
-  var FONTS = "https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap";
+  var FONTS = "https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap";
   var VC = [
     { bg: "rgba(16,185,129,0.12)", border: "#10b981", text: "#059669", dot: "#10b981" },
     { bg: "rgba(99,102,241,0.12)", border: "#6366f1", text: "#4f46e5", dot: "#6366f1" },
@@ -62,7 +62,7 @@
     if (imp === null) return '<span style="color:#9ca3af;font-size:11px;font-style:italic;">baseline</span>';
     var c = imp >= 0 ? VC[vi].text : "#dc2626";
     var a = imp >= 0 ? "\u25b2 +" : "\u25bc ";
-    return '<span style="color:' + c + ';font-family:DM Mono,monospace;font-size:13px;font-weight:600;">' + a + imp.toFixed(2) + "%</span>";
+    return '<span style="color:' + c + ';font-family:Oxygen,sans-serif;font-size:13px;font-weight:600;">' + a + imp.toFixed(2) + "%</span>";
   }
 
   function fmtCurrency(s) {
@@ -283,14 +283,14 @@
             var dAOV = ((curAOV - baselineAOV) / baselineAOV) * 100;
             var dAOVColor = dAOV >= 0 ? VC[vi % 4].text : "#dc2626";
             var dAOVArrow = dAOV >= 0 ? "\u25b2 +" : "\u25bc ";
-            dAOVHtml = '<span style="color:' + dAOVColor + ';font-family:DM Mono,monospace;font-size:12px;font-weight:600;">' + dAOVArrow + dAOV.toFixed(2) + "%</span>";
+            dAOVHtml = '<span style="color:' + dAOVColor + ';font-family:Oxygen,sans-serif;font-size:12px;font-weight:600;">' + dAOVArrow + dAOV.toFixed(2) + "%</span>";
           }
         }
         // Divider + revenue columns
         revCells = '<td style="padding:6px 0;width:1px;"><div style="width:1px;height:100%;background:#e2e8f0;margin:0 4px;"></div></td>'
-          + '<td style="padding:6px 14px;text-align:right;font-family:DM Mono,monospace;font-size:13px;color:#374151;white-space:nowrap;">' + revVal + '</td>'
+          + '<td style="padding:6px 14px;text-align:right;font-family:Oxygen,sans-serif;font-size:13px;color:#374151;white-space:nowrap;">' + revVal + '</td>'
           + '<td style="padding:6px 14px;text-align:right;white-space:nowrap;">' + revImpHtml + '</td>'
-          + '<td style="padding:6px 14px;text-align:right;font-family:DM Mono,monospace;font-size:13px;color:#374151;white-space:nowrap;">' + aovVal + '</td>'
+          + '<td style="padding:6px 14px;text-align:right;font-family:Oxygen,sans-serif;font-size:13px;color:#374151;white-space:nowrap;">' + aovVal + '</td>'
           + '<td style="padding:6px 14px;text-align:right;white-space:nowrap;">' + dAOVHtml + '</td>';
       }
 
@@ -303,13 +303,13 @@
         + (isBest ? '<span style="font-size:10px;background:' + bc.border + ';color:#fff;padding:1px 6px;border-radius:4px;font-weight:600;">\u2605 Best</span>' : "")
         + '</div>'
         + '</td>'
-        + '<td style="padding:0px 16px;text-align:right;font-family:DM Mono,monospace;font-size:13px;color:#374151;white-space:nowrap;">' + (v.conv !== null ? v.conv.toLocaleString() : "\u2014") + '</td>'
-        + '<td style="padding:0px 16px;text-align:right;font-family:DM Mono,monospace;font-size:13px;color:#374151;white-space:nowrap;">' + (v.cr || "\u2014") + '</td>'
+        + '<td style="padding:0px 16px;text-align:right;font-family:Oxygen,sans-serif;font-size:13px;color:#374151;white-space:nowrap;">' + (v.conv !== null ? v.conv.toLocaleString() : "\u2014") + '</td>'
+        + '<td style="padding:0px 16px;text-align:right;font-family:Oxygen,sans-serif;font-size:13px;color:#374151;white-space:nowrap;">' + (v.cr || "\u2014") + '</td>'
         + '<td style="padding:0px 16px;text-align:right;white-space:nowrap;">' + lb(v.imp, vi % 4) + '</td>'
         + '<td style="padding:0px 16px;text-align:right;white-space:nowrap;">'
         + '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;">'
         + dots
-        + '<span style="font-family:DM Mono,monospace;font-size:11px;color:#9ca3af;">' + (v.conf !== null ? v.conf.toFixed(1) + "%" : "\u2014") + '</span>'
+        + '<span style="font-family:Oxygen,sans-serif;font-size:11px;color:#9ca3af;">' + (v.conf !== null ? v.conf.toFixed(1) + "%" : "\u2014") + '</span>'
         + '</div>'
         + '</td>'
         + revCells
@@ -369,7 +369,7 @@
 
     var ov = document.createElement("div");
     ov.id = ID;
-    ov.style.cssText = "position:fixed;top:0;margin-top:300px !important;left:0;right:0;bottom:0;z-index:100000;background:#f1f5f9;display:flex;flex-direction:column;font-family:DM Sans,sans-serif;overflow:hidden;opacity:0;transform:translateY(8px);transition:opacity 0.2s ease,transform 0.2s ease;";
+    ov.style.cssText = "position:fixed;top:0;margin-top:300px !important;left:0;right:0;bottom:0;z-index:100000;background:#f1f5f9;display:flex;flex-direction:column;font-family:Oxygen,sans-serif;overflow:hidden;opacity:0;transform:translateY(8px);transition:opacity 0.2s ease,transform 0.2s ease;";
 
     ov.innerHTML = '<div style="padding:14px 28px;background:#0f172a;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.25);">'
       + '<div style="display:flex;align-items:center;gap:14px;">'
@@ -382,23 +382,23 @@
       + '<span style="font-size:12px;color:#94a3b8;font-weight:400;">' + esc(meta.name || "Report") + '</span>'
       + '</div>'
       + '<div style="display:flex;align-items:center;gap:20px;">'
-      + (meta.days ? '<span style="font-size:12px;color:#94a3b8;"><b style="color:#e2e8f0;font-family:DM Mono,monospace;">' + meta.days + '</b> days</span>' : "")
-      + (meta.users ? '<span style="font-size:12px;color:#94a3b8;"><b style="color:#e2e8f0;font-family:DM Mono,monospace;">' + meta.users + '</b> users</span>' : "")
-      + (meta.conv ? '<span style="font-size:12px;color:#94a3b8;"><b style="color:#e2e8f0;font-family:DM Mono,monospace;">' + meta.conv + '</b> conv.</span>' : "")
+      + (meta.days ? '<span style="font-size:12px;color:#94a3b8;"><b style="color:#e2e8f0;font-family:Oxygen,sans-serif;">' + meta.days + '</b> days</span>' : "")
+      + (meta.users ? '<span style="font-size:12px;color:#94a3b8;"><b style="color:#e2e8f0;font-family:Oxygen,sans-serif;">' + meta.users + '</b> users</span>' : "")
+      + (meta.conv ? '<span style="font-size:12px;color:#94a3b8;"><b style="color:#e2e8f0;font-family:Oxygen,sans-serif;">' + meta.conv + '</b> conv.</span>' : "")
       + '<div style="width:1px;height:20px;background:#334155;"></div>'
-      + '<button id="' + ID + '-refresh" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:12px;font-weight:500;border-radius:6px;cursor:pointer;font-family:DM Sans,sans-serif;">\u21bb Refresh</button>'
+      + '<button id="' + ID + '-refresh" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:12px;font-weight:500;border-radius:6px;cursor:pointer;font-family:Oxygen,sans-serif;">\u21bb Refresh</button>'
       + '<button id="' + ID + '-close" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;background:#1e293b;border:1px solid #334155;color:#94a3b8;font-size:16px;border-radius:6px;cursor:pointer;">\u00d7</button>'
       + '</div>'
       + '</div>'
       + '<div style="padding:10px 28px;background:#fff;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:20px;flex-wrap:wrap;flex-shrink:0;">'
       + legend
-      + '<span id="' + ID + '-ts" style="margin-left:auto;font-size:11px;color:#94a3b8;font-family:DM Mono,monospace;">Live data</span>'
+      + '<span id="' + ID + '-ts" style="margin-left:auto;font-size:11px;color:#94a3b8;font-family:Oxygen,sans-serif;">Live data</span>'
       + '</div>'
       + '<div id="' + ID + '-body" style="overflow-y:auto;padding:20px 28px;flex:1;display:flex;flex-direction:column;gap:12px;">'
       + (cards || '<p style="color:#94a3b8;font-size:14px;text-align:center;padding:40px;">No goal data found on this page.</p>')
       + '</div>'
       + '<div style="padding:8px 28px;background:#fff;border-top:1px solid #e2e8f0;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">'
-      + '<span style="font-size:10px;color:#cbd5e1;font-family:DM Mono,monospace;">signal v1.2</span>'
+      + '<span style="font-size:10px;color:#cbd5e1;font-family:Oxygen,sans-serif;">signal v1.2</span>'
       + '<span style="font-size:11px;color:#94a3b8;">PDP \u2192 ATC \u2192 Checkout \u2192 Purchase \u2192 Subscription</span>'
       + '</div>';
 
