@@ -21,6 +21,16 @@
     return "Conv.";
   }
 
+  // Normalize raw Convert goal names to friendly display names
+  function normalizeName(name) {
+    var t = name.trim();
+    if (/pdp view/i.test(t)) return "PDP Views";
+    if (/^atc\s*\d*$/i.test(t) || /atc\s+\d+/i.test(t)) return "ATC";
+    if (/purchase shopify customer event/i.test(t)) return "Purchases";
+    if (/purchase\s*-\s*subscription/i.test(t)) return "Subscriptions";
+    return t;
+  }
+
   // Is this a revenue goal (Purchase or Subscription)?
   function isRevenueGoal(goalName) {
     var lc = goalName.toLowerCase();
@@ -190,7 +200,7 @@
         var sib = el.previousElementSibling;
         while (sib) {
           var h = sib.querySelector("h6,h5,h4") || (["H6", "H5", "H4"].indexOf(sib.tagName) !== -1 ? sib : null);
-          if (h) { goalName = h.textContent.trim(); found = true; break; }
+          if (h) { goalName = normalizeName(h.textContent.trim()); found = true; break; }
           sib = sib.previousElementSibling;
         }
         el = el.parentElement;
@@ -216,7 +226,7 @@
     return meta;
   }
 
-  function renderCard(goal) {
+  function renderCard(goal, cardIndex) {
     var vars = goal.variations;
     if (!vars.some(function (v) { return v.vis !== null; })) return "";
     var iconMap = { pdp: "\uD83D\uDC41", atc: "\uD83D\uDED2", checkout: "\uD83D\uDCB3", purchase: "\u2705", subscription: "\uD83D\uDD04" };
@@ -319,7 +329,8 @@
       return '<th style="padding:8px 16px;text-align:' + (i === 0 ? "left" : "right") + ';font-size:10px;font-weight:700;color:' + (isRev ? "#059669" : "#64748b") + ';text-transform:uppercase;letter-spacing:0.06em;background:' + bg + ';white-space:nowrap;">' + esc(h) + '</th>';
     }).join("");
 
-    return '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.06);flex-shrink:0;">'
+    var mw = (typeof cardIndex === 'number' && cardIndex < 3) ? 'max-width:60%;' : '';
+    return '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.06);flex-shrink:0;' + mw + '">'
       + '<div style="padding:12px 20px;background:#f8fafc;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:10px;">'
       + '<span style="font-size:18px;">' + icon + '</span>'
       + '<span style="font-size:15px;font-weight:700;color:#0f172a;">' + esc(goal.name) + '</span>'
@@ -343,13 +354,13 @@
       return Promise.resolve();
     });
     Promise.all(revPromises).then(function () {
-      body.innerHTML = goals.map(function (g) { return renderCard(g); }).join('<div style="height:12px;"></div>');
+      body.innerHTML = goals.map(function (g, gi) { return renderCard(g, gi); }).join('<div style="height:12px;"></div>');
       if (ts) ts.textContent = "Updated " + new Date().toLocaleTimeString();
     });
   }
 
   function buildOverlay(goals, meta) {
-    var cards = goals.map(function (g) { return renderCard(g); }).join('<div style="height:12px;"></div>');
+    var cards = goals.map(function (g, gi) { return renderCard(g, gi); }).join('<div style="height:12px;"></div>');
     var names = goals[0] && goals[0].variations ? goals[0].variations.map(function (v) { return v.name; }) : [];
     var legend = names.map(function (n, i) {
       return '<span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#374151;font-weight:500;">'
