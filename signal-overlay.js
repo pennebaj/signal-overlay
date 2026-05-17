@@ -61,9 +61,9 @@
 
   function metricColor(imp) {
     if (imp === null) return "#9ca3af";
-    if (imp >= 10)  return "#16a34a";
-    if (imp >= 3)   return "#4ade80";
-    if (imp >= 0)   return "#86efac";
+    if (imp >= 10)  return "#00c047";
+    if (imp >= 3)   return "#00c047";
+    if (imp >= 0)   return "#297a46";
     if (imp >= -3)  return "#fca5a5";
     if (imp >= -10) return "#f87171";
     return "#dc2626";
