@@ -3,10 +3,11 @@
   var ID = "__signal_ov__";
   var FONTS = "https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap";
   var VC = [
-    { bg: "rgba(16,185,129,0.12)", border: "#10b981", text: "#059669", dot: "#10b981" },
-    { bg: "rgba(99,102,241,0.12)", border: "#6366f1", text: "#4f46e5", dot: "#6366f1" },
-    { bg: "rgba(245,158,11,0.12)", border: "#f59e0b", text: "#d97706", dot: "#f59e0b" },
-    { bg: "rgba(239,68,68,0.12)", border: "#ef4444", text: "#dc2626", dot: "#ef4444" }
+    { bg: "rgba(56,189,248,0.10)",  border: "#38bdf8", text: "#0284c7", dot: "#38bdf8" },
+    { bg: "rgba(59,130,246,0.10)",  border: "#3b82f6", text: "#1d4ed8", dot: "#3b82f6" },
+    { bg: "rgba(168,85,247,0.10)",  border: "#a855f7", text: "#7e22ce", dot: "#a855f7" },
+    { bg: "rgba(244,114,182,0.10)", border: "#f472b6", text: "#be185d", dot: "#f472b6" },
+    { bg: "rgba(219,39,119,0.10)",  border: "#db2777", text: "#9d174d", dot: "#db2777" }
   ];
   var FO = ["pdp", "atc", "checkout", "purchase shopify", "purchase", "subscription"];
 
@@ -58,9 +59,19 @@
     return h + "</span>";
   }
 
+  function metricColor(imp) {
+    if (imp === null) return "#9ca3af";
+    if (imp >= 10)  return "#16a34a";
+    if (imp >= 3)   return "#4ade80";
+    if (imp >= 0)   return "#86efac";
+    if (imp >= -3)  return "#fca5a5";
+    if (imp >= -10) return "#f87171";
+    return "#dc2626";
+  }
+
   function lb(imp, vi) {
     if (imp === null) return '<span style="color:#9ca3af;font-size:11px;font-style:italic;">baseline</span>';
-    var c = imp >= 0 ? VC[vi].text : "#dc2626";
+    var c = metricColor(imp);
     var a = imp >= 0 ? "\u25b2 +" : "\u25bc ";
     return '<span style="color:' + c + ';font-family:Oxygen,sans-serif;font-size:13px;font-weight:600;">' + a + imp.toFixed(2) + "%</span>";
   }
@@ -274,14 +285,14 @@
         }
         var revVal = rd ? fmtCurrency(rd.rev) : "\u2014";
         var aovVal = rd ? fmtCurrency(rd.aov) : "\u2014";
-        var revImpHtml = v.isB ? '<span style="color:#9ca3af;font-size:11px;">baseline</span>' : (rd && rd.revImp !== null ? lb(rd.revImp, vi % 4) : "\u2014");
+        var revImpHtml = v.isB ? '<span style="color:#9ca3af;font-size:11px;">baseline</span>' : (rd && rd.revImp !== null ? lb(rd.revImp, vi) : "\u2014");
         // Delta AOV
         var dAOVHtml = "\u2014";
         if (!v.isB && rd && baselineAOV !== null) {
           var curAOV = parseFloat((rd.aov || "").replace(/[$,]/g, ""));
           if (!isNaN(curAOV) && baselineAOV !== 0) {
             var dAOV = ((curAOV - baselineAOV) / baselineAOV) * 100;
-            var dAOVColor = dAOV >= 0 ? VC[vi % 4].text : "#dc2626";
+            var dAOVColor = metricColor(dAOV);
             var dAOVArrow = dAOV >= 0 ? "\u25b2 +" : "\u25bc ";
             dAOVHtml = '<span style="color:' + dAOVColor + ';font-family:Oxygen,sans-serif;font-size:12px;font-weight:600;">' + dAOVArrow + dAOV.toFixed(2) + "%</span>";
           }
@@ -325,8 +336,8 @@
       var isDiv = (h === "" && hasRevenue);
       if (isDiv) return '<th style="padding:0;width:1px;"><div style="width:1px;background:#cbd5e1;margin:0 4px;height:100%;"></div></th>';
       var isRev = hasRevenue && i >= baseHeaders.length + 1;
-      var bg = isRev ? "#f0fdf4" : "#f8fafc";
-      return '<th style="padding:8px 16px;text-align:' + (i === 0 ? "left" : "right") + ';font-size:10px;font-weight:700;color:' + (isRev ? "#059669" : "#64748b") + ';text-transform:uppercase;letter-spacing:0.06em;background:' + bg + ';white-space:nowrap;">' + esc(h) + '</th>';
+      var bg = isRev ? "#f8fafc" : "#f8fafc";
+      return '<th style="padding:8px 16px;text-align:' + (i === 0 ? "left" : "right") + ';font-size:10px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.06em;background:' + bg + ';white-space:nowrap;">' + esc(h) + '</th>';
     }).join("");
 
     var mw = (typeof cardIndex === 'number' && cardIndex < 3) ? 'max-width:65%;' : '';
@@ -374,9 +385,9 @@
     ov.innerHTML = '<div style="padding:14px 28px;background:#0f172a;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.25);">'
       + '<div style="display:flex;align-items:center;gap:14px;">'
       + '<div style="display:flex;gap:5px;">'
-      + '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#6366f1;"></span>'
-      + '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#10b981;"></span>'
-      + '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#f59e0b;"></span>'
+      + '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#38bdf8;"></span>'
+      + '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#a855f7;"></span>'
+      + '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#db2777;"></span>'
       + '</div>'
       + '<span style="font-size:16px;font-weight:800;color:#fff;letter-spacing:-0.3px;">Signal</span>'
       + '<span style="font-size:12px;color:#94a3b8;font-weight:400;">' + esc(meta.name || "Report") + '</span>'
